@@ -14,7 +14,7 @@ reactRoot.render(
         <ul>
           {restaurant.menu.map((dish) => (
             <li style={{ listStyleType: "none", color: "green" }} key={dish.id}>
-              {dish.name}
+              {dish.name} - <span style={{ color: "black" }}>{dish.price}$</span> ( {dish.ingredients.join(", ")} )
             </li>
           ))}
         </ul>
