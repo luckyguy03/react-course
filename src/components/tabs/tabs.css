@@ -5,10 +5,8 @@
     color: green;
 }
 .notActiveTab{
-    background-color: grey;
     cursor: pointer;
     height: 40px;
-    color: green;
 }
 
 .tabs{
@@ -16,3 +14,9 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 50%;
 }
+.dish-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 50%;
+}
+
