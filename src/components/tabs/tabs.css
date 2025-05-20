@@ -1,0 +1,18 @@
+.activeTab{
+    background-color: brown;
+    cursor: pointer;
+    height: 40px;
+    color: green;
+}
+.notActiveTab{
+    background-color: grey;
+    cursor: pointer;
+    height: 40px;
+    color: green;
+}
+
+.tabs{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 50%;
+}
