@@ -1,23 +1,22 @@
 import { useState } from "react";
-import { restaurants } from "../../constants/mock";
+import { restaurants } from "../../../constants/mock";
 import { Tab } from "./components/tab";
-import { TabContent } from "./components/tab-content";
+import { Restautant } from "./components/restaurant";
 
 
-export const Tabs = () => {
+export const RestaurantPage = () => {
     const [activeTab, setActiveTab] = useState(restaurants[0].id);
 
     const handleTabClick = (restaurantId) => {
         if(activeTab === restaurantId) return;
-        console.log("Clicked tab: " + restaurantId);
         setActiveTab(restaurantId);
     };
 
     const restautantActive = restaurants.find(({ id }) => id === activeTab);
 
     return (
-        <div className="tabs-container">
-            <div className="tabs">
+        <div className="RestaurantPage-container">
+            <div className="RestaurantPage">
                 {restaurants.map(({ id, name }) => (
                     <Tab
                         key={id}
@@ -30,7 +29,7 @@ export const Tabs = () => {
                 ))}
             </div>
             <div className="tab-content">
-                <TabContent restaurant={restautantActive}/>
+                <Restautant restaurant={restautantActive}/>
             </div>
         </div>
     );

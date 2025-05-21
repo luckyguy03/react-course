@@ -1,6 +1,6 @@
-import { Counter } from "../../counter/counter";
+import { Counter } from "../../../counter/counter";
 
-export const TabContent = ({ restaurant }) => {
+export const Restautant = ({ restaurant }) => {
     return (
         <>
             <h2 style={{ color: "cadetblue" }}>{restaurant.name}</h2>

@@ -1,4 +1,4 @@
-import '../tabs.css';
+import '../restaurant-page.css';
 
 export const Tab = ({ label, onClick, isActive }) => {
     return (

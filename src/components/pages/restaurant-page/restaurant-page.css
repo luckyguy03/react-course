@@ -9,7 +9,7 @@
     height: 40px;
 }
 
-.tabs{
+.RestaurantPage{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 50%;

@@ -1,11 +1,11 @@
 import { Layout } from "../layout/layout";
-//import { Counter } from "../counter/counter";
-import { Tabs } from "../tabs/tabs";
+
+import { RestaurantPage } from "../pages/restaurant-page/restaurant-page";
 
 export const App = () => {
   return (
     <Layout>
-      <Tabs />
+      <RestaurantPage />
     </Layout>
   );
 };
