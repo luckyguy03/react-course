@@ -9,7 +9,7 @@
     height: 40px;
 }
 
-.RestaurantPage{
+.restaurant-page {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 50%;

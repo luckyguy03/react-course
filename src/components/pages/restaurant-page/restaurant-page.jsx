@@ -15,8 +15,8 @@ export const RestaurantPage = () => {
     const restautantActive = restaurants.find(({ id }) => id === activeTab);
 
     return (
-        <div className="RestaurantPage-container">
-            <div className="RestaurantPage">
+        <div className="restaurant-page-container">
+            <div className="restaurant-page">
                 {restaurants.map(({ id, name }) => (
                     <Tab
                         key={id}
