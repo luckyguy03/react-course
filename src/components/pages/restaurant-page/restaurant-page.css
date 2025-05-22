@@ -1,10 +1,10 @@
-.activeTab{
+.active-tab{
     background-color: brown;
     cursor: pointer;
     height: 40px;
     color: green;
 }
-.notActiveTab{
+.not-active-tab{
     cursor: pointer;
     height: 40px;
 }
