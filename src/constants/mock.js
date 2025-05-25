@@ -38,6 +38,25 @@ export const restaurants = [
     ],
   },
   {
+    id: "d7f53a0f-8b39-4761-963e-ed959c230643",
+    name: "Homemade Pizza",
+    menu: [
+      {
+        id: "d75f762a-eadd-49be-8918-ed0daa8dd024",
+        name: "Chicken tikka masala",
+        price: 12,
+        ingredients: ["chicken", "rice"],
+      },
+      {
+        id: "bd129641-c0eb-432b-84b6-8b81d2930358",
+        name: "Samosa",
+        price: 8,
+        ingredients: ["chicken", "bread"],
+      },
+    ],
+    reviews: [],
+  },
+  {
     id: "bb8afbec-2fec-491f-93e9-7f13950dd80b",
     name: "Homeslice",
     menu: [

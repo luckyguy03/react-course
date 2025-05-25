@@ -1,4 +1,5 @@
 import { Dish } from "./dish";
+import { ReviewForm } from "../../../review-form/review-form";
 
 export const Restautant = ({ restaurant }) => {
     return (
@@ -12,14 +13,19 @@ export const Restautant = ({ restaurant }) => {
                     </li>
                 ))}
             </ul>
-            <h3 style={{ color: "ButtonText" }}>Отзывы:</h3>
-            <ul>
-                {restaurant.reviews.map((review) => (
-                    <li style={{ listStyleType: "none", color: "green" }} key={review.id}>
-                        {review.user} - <span style={{ color: "black" }}>{review.text} - Rating({review.rating})</span>
-                    </li>
-                ))}
-            </ul>
+            {restaurant.reviews.length === 0 ? <h4 style={{ color: "burlywood" }}>Отзывов пока нет</h4> : 
+            <>
+                <h3 style={{ color: "ButtonText" }}>Отзывы:</h3>
+                <ul>
+                    {restaurant.reviews.map((review) => (
+                        <li style={{ listStyleType: "none", color: "green" }} key={review.id}>
+                            {review.user} - <span style={{ color: "black" }}>{review.text} - Rating({review.rating})</span>
+                        </li>
+                    ))}
+                </ul>
+            </>
+            }
+            <ReviewForm/>   
         </>
     );
 };
