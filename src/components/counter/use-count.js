@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { DISH_COUNTER_MAX, DISH_COUNTER_MIN } from "../../constants/constants";
 
-export const useCount = () => {
+export const useCount = (min, max) => {
   const [count, setCount] = useState(0);
 
   const onIncrement = () => {
-    if(count < DISH_COUNTER_MAX)
+    if(count < max)
       setCount(count + 1);
   }
   const onDecrement = () => {
-    if(count > DISH_COUNTER_MIN)
+    if(count > min)
       setCount(count - 1);
   }
 

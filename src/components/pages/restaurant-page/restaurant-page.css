@@ -11,7 +11,7 @@
 
 .restaurant-page {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-flow: column;
     width: 50%;
 }
 .dish-container {
