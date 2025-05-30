@@ -1,0 +1,37 @@
+.activeTab{
+    background-color: brown;
+    cursor: pointer;
+    height: 40px;
+    color: green;
+    width: 150px;
+}
+.notActiveTab{
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+}
+
+.restaurantPage {
+    display: grid;
+    grid-auto-flow: column;
+    width: 50%;
+}
+
+.restaurantPageContainer{
+    padding:20px;
+    background-color: rgb(229, 240, 229);
+}
+.dishContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+}
+
+.dishDescription{
+    width: 100%;
+}
+
+.dishCounter{
+    width: 30%;
+}
+

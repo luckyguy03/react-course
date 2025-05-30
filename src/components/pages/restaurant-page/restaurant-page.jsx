@@ -3,6 +3,8 @@ import { restaurants } from "../../../constants/mock";
 import { Tab } from "./components/tab";
 import { Restautant } from "./components/restaurant";
 
+import styles from "./restaurant-page.module.css";
+
 
 export const RestaurantPage = () => {
     const [activeTab, setActiveTab] = useState(restaurants[0].id);
@@ -15,8 +17,8 @@ export const RestaurantPage = () => {
     const restautantActive = restaurants.find(({ id }) => id === activeTab);
 
     return (
-        <div className="restaurant-page-container">
-            <div className="restaurant-page">
+        <div className={styles.restaurantPageContainer}>
+            <div className={styles.restaurantPage}>
                 {restaurants.map(({ id, name }) => (
                     <Tab
                         key={id}
