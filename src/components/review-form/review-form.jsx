@@ -2,35 +2,40 @@ import { useForm } from "./use-form";
 import { Counter } from "../counter/counter";
 import { RATING_COUNTER_MAX, RATING_COUNTER_MIN } from "../../constants/constants";
 
+import styles from "./review-form.module.css";
+
 export const ReviewForm = () => {
   const { form, onNameChange, onTextChange, onRatingChange, clear } = useForm();
 
   const { name, text, ratingCount } = form;
 
   return (
-    <>
+    <div className={styles.reviewForm}>
       <h3>Оставьте отзыв, пожалуйста:</h3>
       <form onSubmit={(event) => event.preventDefault()}>
         <div>
-          <span>Name</span>
+          <span>Ваше имя</span>
           <input
             value={name}
             onChange={(event) => {
               onNameChange(event.target.value);
             }}
+            type="text"
           />
         </div>
         <div>
-          <span>Text</span>
-          <input
+          <span>Сообщение</span>
+          <textarea
             value={text}
             onChange={(event) => {
               onTextChange(event.target.value);
             }}
+            type="text"
+            rows="5"
           />
         </div>
         <div>
-          <span>Rating</span>
+          <span>Оценка (1 - 5)</span>
           <Counter 
             count={ratingCount} 
             onIncrement={() => {
@@ -44,6 +49,6 @@ export const ReviewForm = () => {
         </div>
         <button onClick={clear}>clear</button>
       </form>
-    </>
+    </div>
   );
 };
