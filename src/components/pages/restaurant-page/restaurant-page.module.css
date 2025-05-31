@@ -21,7 +21,7 @@
     padding:20px;
     background-color: rgb(229, 240, 229);
 }
-.dishContainer {
+.container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 80%;

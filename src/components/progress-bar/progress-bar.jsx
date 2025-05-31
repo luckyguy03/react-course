@@ -6,14 +6,12 @@ export const ProgressBar = () => {
 
     const [progressPercent, setProgressPercent] = useState(0);
 
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-      const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
-
-      setProgressPercent(scrollPercent);
-    };
-
-    useEffect(() => {  
+    useEffect(() => {
+        const handleScroll = () => {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            setProgressPercent(scrollPercent);
+        };  
         document.addEventListener("scroll", handleScroll)
         return () => {
             document.removeEventListener("scroll", handleScroll)

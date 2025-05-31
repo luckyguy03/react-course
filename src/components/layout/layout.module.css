@@ -5,3 +5,11 @@
     width: 1000px;
     margin: 0 auto;
 }
+
+.header{
+    height: 100px;
+}
+
+.footer{
+    height: 100px;
+}
