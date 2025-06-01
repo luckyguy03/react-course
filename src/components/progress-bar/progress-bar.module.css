@@ -1,0 +1,7 @@
+.progressBar {
+    background-color: #DC2626;
+    top: 0;
+    position: fixed;
+    height: 10px;
+    left: 0;
+}

@@ -1,8 +1,8 @@
-import '../restaurant-page.css';
+import styles from '../restaurant-page.module.css';
 
 export const Tab = ({ label, onClick, isActive }) => {
     return (
-        <button className={isActive ? "active-tab" : "not-active-tab"}  onClick={onClick}>
+        <button className={isActive ? styles.activeTab : styles.notActiveTab}  onClick={onClick}>
             <b>{label}</b>
         </button>
     );
