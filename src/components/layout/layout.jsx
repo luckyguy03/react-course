@@ -1,4 +1,5 @@
 import { ProgressBar } from "../progress-bar/progress-bar";
+import { ThemeButton } from "../theme-button/theme-button";
 
 import styles from "./layout.module.css";
 
@@ -8,6 +9,7 @@ export const Layout = ({children}) => {
       <header className={styles.header}>
         <nav></nav>
         <h1>Заказ еды</h1>
+        <ThemeButton/>
       </header>
       {children}
       <footer className={styles.footer}>Будет вкусно!!!</footer>
