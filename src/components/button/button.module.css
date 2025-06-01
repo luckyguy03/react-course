@@ -1,0 +1,25 @@
+.root {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.size500 {
+    font-size: 16px;
+    padding: 7px 14px;
+}
+
+.size400 {
+    font-size: 8px;
+    padding: 8px 12px;
+}
+
+.light {
+    background-color: rgb(121, 66, 44);
+}
+
+.dark {
+    background-color:aqua;
+}

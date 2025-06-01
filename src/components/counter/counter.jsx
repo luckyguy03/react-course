@@ -1,10 +1,14 @@
-export const Counter = ({count, onDecrement, onIncrement}) => {
+import { useContext } from "react";
+import { ThemeContext } from "../theme-context-provider/index";
+import { Button } from "../button/button";
 
+export const Counter = ({count, onDecrement, onIncrement}) => {
+  const { theme } = useContext(ThemeContext);
   return (
     <div>
-      <button onClick={onDecrement}>-</button>
+      <Button onClick={onDecrement} title={"-"} size="400"/>
       {count}
-      <button onClick={onIncrement}>+</button>
+      <Button onClick={onIncrement} title={"+"} size="400"/>
     </div>
   );
 };

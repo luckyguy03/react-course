@@ -1,6 +1,7 @@
 import { useForm } from "./use-form";
 import { Counter } from "../counter/counter";
 import { RATING_COUNTER_MAX, RATING_COUNTER_MIN } from "../../constants/constants";
+import { Button } from "../button/button";
 
 import styles from "./review-form.module.css";
 
@@ -47,7 +48,7 @@ export const ReviewForm = () => {
                 onRatingChange(ratingCount - 1)
             }}/>
         </div>
-        <button onClick={clear}>clear</button>
+        <Button className={styles.resetBtn} onClick={clear} title={"Очистить"}/>
       </form>
     </div>
   );
