@@ -3,6 +3,7 @@ import { UserContext } from ".";
 
 export const UserContextProvider = ({ children }) => {
   const [userName, setUser] = useState("");
-
-  return <UserContext value={{ userName, setUser }}>{children}</UserContext>;
+  const isAuthorized = !!userName;
+  
+  return <UserContext value={{ userName, setUser, isAuthorized }}>{children}</UserContext>;
 };

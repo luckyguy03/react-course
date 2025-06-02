@@ -4,7 +4,7 @@ import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
 
 export const Restautant = ({ restaurant }) => {
-    const {userName} = useContext(UserContext);
+    const {isAuthorized} = useContext(UserContext);
 
     return (
         <>
@@ -29,7 +29,7 @@ export const Restautant = ({ restaurant }) => {
                 </ul>
             </>
             }
-            {userName === "" ? <></> : <ReviewForm/>}
+            {isAuthorized ? <ReviewForm/> : null}
         </>
     );
 };
