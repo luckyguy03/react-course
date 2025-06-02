@@ -1,14 +1,13 @@
 .activeTab{
-    background-color: brown;
     cursor: pointer;
     height: 40px;
     color: green;
-    width: 150px;
+    width: 160px;
 }
 .notActiveTab{
     cursor: pointer;
     height: 40px;
-    width: 150px;
+    width: 160px;
 }
 
 .restaurantPage {

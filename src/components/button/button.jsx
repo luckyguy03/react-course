@@ -4,12 +4,12 @@ import { useContext } from "react";
 import { ThemeContext } from "../theme-context-provider/index";
 
 export const Button = ({
-  title,
-  onClick,
-  disabled,
-  size = "500",
-  className,
-}) => {
+    title,
+    onClick,
+    disabled,
+    size = "500",
+    className,
+  }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
