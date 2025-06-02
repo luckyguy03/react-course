@@ -46,7 +46,10 @@ export const ReviewForm = () => {
             onDecrement={() => {
               if(ratingCount > RATING_COUNTER_MIN)
                 onRatingChange(ratingCount - 1)
-            }}/>
+            }}
+            decrementEnable={ratingCount > RATING_COUNTER_MIN}
+            incrementEnable={ratingCount < RATING_COUNTER_MAX}
+            />
         </div>
         <Button className={styles.resetBtn} onClick={clear} title={"Очистить"}/>
       </form>
