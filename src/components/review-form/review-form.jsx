@@ -1,6 +1,9 @@
 import { useForm } from "./use-form";
 import { Counter } from "../counter/counter";
-import { RATING_COUNTER_MAX, RATING_COUNTER_MIN } from "../../constants/constants";
+import {
+  RATING_COUNTER_MAX,
+  RATING_COUNTER_MIN,
+} from "../../constants/constants";
 import { Button } from "../button/button";
 
 import styles from "./review-form.module.css";
@@ -37,21 +40,25 @@ export const ReviewForm = () => {
         </div>
         <div>
           <span>Оценка (1 - 5)</span>
-          <Counter 
-            count={ratingCount} 
+          <Counter
+            count={ratingCount}
             onIncrement={() => {
-              if(ratingCount < RATING_COUNTER_MAX)
-                onRatingChange(ratingCount + 1)
-            }} 
+              if (ratingCount < RATING_COUNTER_MAX)
+                onRatingChange(ratingCount + 1);
+            }}
             onDecrement={() => {
-              if(ratingCount > RATING_COUNTER_MIN)
-                onRatingChange(ratingCount - 1)
+              if (ratingCount > RATING_COUNTER_MIN)
+                onRatingChange(ratingCount - 1);
             }}
             decrementEnable={ratingCount > RATING_COUNTER_MIN}
             incrementEnable={ratingCount < RATING_COUNTER_MAX}
-            />
+          />
         </div>
-        <Button className={styles.resetBtn} onClick={clear} title={"Очистить"}/>
+        <Button
+          className={styles.resetBtn}
+          onClick={clear}
+          title={"Очистить"}
+        />
       </form>
     </div>
   );

@@ -47,7 +47,7 @@ export const useForm = () => {
   };
 
   const onRatingChange = (rating) => {
-    dispatch({ type: SET_RATING_ACTION, payload: rating});
+    dispatch({ type: SET_RATING_ACTION, payload: rating });
   };
 
   const clear = () => {
