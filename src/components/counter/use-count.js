@@ -7,6 +7,9 @@ export const useCount = (min, max) => {
     if(count < max)
       setCount(count + 1);
   }
+  const incrementEnabled = count < max;
+  const decrementEnabled = count > min;
+
   const onDecrement = () => {
     if(count > min)
       setCount(count - 1);
@@ -16,5 +19,7 @@ export const useCount = (min, max) => {
     count,
     onIncrement,
     onDecrement,
+    incrementEnabled,
+    decrementEnabled
   };
 };

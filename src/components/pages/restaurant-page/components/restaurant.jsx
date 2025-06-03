@@ -1,7 +1,11 @@
 import { Dish } from "./dish";
 import { ReviewForm } from "../../../review-form/review-form";
+import { UserContext } from "../../../user-context-provider";
+import { useContext } from "react";
 
 export const Restautant = ({ restaurant }) => {
+    const {isAuthorized} = useContext(UserContext);
+
     return (
         <>
             <h2 style={{ color: "cadetblue" }}>{restaurant.name}</h2>
@@ -25,7 +29,7 @@ export const Restautant = ({ restaurant }) => {
                 </ul>
             </>
             }
-            <ReviewForm/>   
+            {isAuthorized ? <ReviewForm/> : null}
         </>
     );
 };

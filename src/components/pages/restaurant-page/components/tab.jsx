@@ -1,9 +1,9 @@
+import { Button } from '../../../button/button';
+
 import styles from '../restaurant-page.module.css';
 
 export const Tab = ({ label, onClick, isActive }) => {
     return (
-        <button className={isActive ? styles.activeTab : styles.notActiveTab}  onClick={onClick}>
-            <b>{label}</b>
-        </button>
+        <Button className={isActive ? styles.activeTab : styles.notActiveTab}  onClick={onClick} title={<b>{label}</b>}/>
     );
 };

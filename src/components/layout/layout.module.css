@@ -8,8 +8,18 @@
 
 .header{
     height: 100px;
+    display: grid;
+    grid-auto-flow: column;
 }
 
 .footer{
     height: 100px;
 }
+
+.themeButton{
+    height: 30px;
+    width: 100px;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
