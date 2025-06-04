@@ -2,11 +2,17 @@ import { useState } from "react";
 import { UserContext } from ".";
 
 export const UserContextProvider = ({ children }) => {
-  const [userName, setUser] = useState("");
-  const isAuthorized = !!userName;
+  const [auth, setAuth] = useState({ isAuthorized: false });
+  const toggleAuth = () => {
+    setAuth((prev) => {
+      return prev.isAuthorized
+        ? { isAuthorized: false }
+        : { isAuthorized: true, name: "Andrey" };
+    });
+  };
 
   return (
-    <UserContext value={{ userName, setUser, isAuthorized }}>
+    <UserContext value={{ auth, toggleAuth }}>
       {children}
     </UserContext>
   );

@@ -1,34 +1,34 @@
 import { useState } from "react";
-import { restaurants } from "../../../constants/mock";
 import { Tab } from "./components/tab";
 import { Restautant } from "./components/restaurant";
+import { useSelector } from "react-redux";
+import { selectRestaurantIds } from "../../../redux/entities/restaurant/slice";
 
 import styles from "./restaurant-page.module.css";
 
 export const RestaurantPage = () => {
-  const [activeTab, setActiveTab] = useState(restaurants[0].id);
+  const restaurantIds = useSelector(selectRestaurantIds);
+  const [activeTabId, setActiveTab] = useState(restaurantIds[0]);
 
   const handleTabClick = (restaurantId) => {
-    if (activeTab === restaurantId) return;
+    if (activeTabId === restaurantId) return;
     setActiveTab(restaurantId);
   };
-
-  const restautantActive = restaurants.find(({ id }) => id === activeTab);
 
   return (
     <div className={styles.restaurantPageContainer}>
       <div className={styles.restaurantPage}>
-        {restaurants.map(({ id, name }) => (
+        {restaurantIds.map((id) => (
           <Tab
             key={id}
-            label={name}
             onClick={() => handleTabClick(id)}
-            isActive={id === activeTab}
+            isActive={id === activeTabId}
+            restaurantId ={id}
           />
         ))}
       </div>
       <div className="tab-content">
-        <Restautant restaurant={restautantActive} />
+        <Restautant restaurantId={activeTabId} />
       </div>
     </div>
   );
