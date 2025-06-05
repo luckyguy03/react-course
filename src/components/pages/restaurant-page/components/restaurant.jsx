@@ -13,8 +13,8 @@ export const Restautant = ({ restaurantId }) => {
   return (
     <>
       <h2 style={{ color: "cadetblue" }}>{restaurant.name}</h2>
-      <Menu restaurantId = {restaurant.id} />
-      <Reviews restaurantId = {restaurant.id} />
+      <Menu menu = {restaurant.menu} />
+      <Reviews reviews = {restaurant.reviews} />
       {isAuthorized ? <ReviewForm /> : null}
     </>
   );
