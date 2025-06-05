@@ -4,10 +4,13 @@ import { UserContext } from "../user-context-provider/index";
 import styles from "../layout/layout.module.css";
 
 export const UserButton = () => {
-  const { userName, setUser, isAuthorized } = useContext(UserContext);
+  const {
+    auth: { name, isAuthorized },
+    toggleAuth,
+  } = useContext(UserContext);
 
   const handleClick = () => {
-    setUser((current) => (current === "" ? "Andrey" : ""));
+    toggleAuth((current) => (current === "" ? "Andrey" : ""));
   };
 
   return (
@@ -18,7 +21,7 @@ export const UserButton = () => {
         </button>
       ) : (
         <>
-          <span>Вы вошли: {userName}</span>
+          <span>Вы вошли: {name}</span>
           <button className={styles.themeButton} onClick={handleClick}>
             Выйти
           </button>
