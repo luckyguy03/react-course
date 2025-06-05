@@ -6,7 +6,7 @@ const initialState = {
   entities: normalizedReviews.reduce((acc, dish) => {
     acc[dish.id] = dish;
     return acc;
-  }, {})
+  }, {}),
 };
 
 export const reviewsSlice = createSlice({
@@ -14,8 +14,7 @@ export const reviewsSlice = createSlice({
   initialState,
   selectors: {
     selectReviewById: (state, id) => state.entities[id],
-  }
+  },
 });
 
-export const { selectReviewById } =
-  reviewsSlice.selectors;
+export const { selectReviewById } = reviewsSlice.selectors;

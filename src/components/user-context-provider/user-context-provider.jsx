@@ -11,9 +11,5 @@ export const UserContextProvider = ({ children }) => {
     });
   };
 
-  return (
-    <UserContext value={{ auth, toggleAuth }}>
-      {children}
-    </UserContext>
-  );
+  return <UserContext value={{ auth, toggleAuth }}>{children}</UserContext>;
 };

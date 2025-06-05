@@ -4,7 +4,10 @@ import { UserContext } from "../user-context-provider/index";
 import styles from "../layout/layout.module.css";
 
 export const UserButton = () => {
-  const { auth:{name, isAuthorized}, toggleAuth} = useContext(UserContext);
+  const {
+    auth: { name, isAuthorized },
+    toggleAuth,
+  } = useContext(UserContext);
 
   const handleClick = () => {
     toggleAuth((current) => (current === "" ? "Andrey" : ""));

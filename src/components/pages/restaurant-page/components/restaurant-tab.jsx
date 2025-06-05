@@ -4,8 +4,10 @@ import { selectRestaurantById } from "../../../../redux/entities/restaurant/slic
 
 import styles from "../restaurant-page.module.css";
 
-export const RestaurantTab = ({restaurantId, onClick, isActive }) => {
-  const label = useSelector((state) => selectRestaurantById(state, restaurantId)).name || {};
+export const RestaurantTab = ({ restaurantId, onClick, isActive }) => {
+  const label =
+    useSelector((state) => selectRestaurantById(state, restaurantId)).name ||
+    {};
   return (
     <Button
       className={isActive ? styles.activeTab : styles.notActiveTab}

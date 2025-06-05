@@ -7,7 +7,9 @@ import { selectDishById } from "../../../../redux/entities/dishes/slice";
 import styles from "../../restaurant-page/restaurant-page.module.css";
 
 export const Dish = ({ dishId }) => {
-  const { auth:{isAuthorized}} = useContext(UserContext);
+  const {
+    auth: { isAuthorized },
+  } = useContext(UserContext);
   const dish = useSelector((state) => selectDishById(state, dishId) || {});
 
   return (

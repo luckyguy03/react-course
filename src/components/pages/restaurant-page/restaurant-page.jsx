@@ -23,7 +23,7 @@ export const RestaurantPage = () => {
             key={id}
             onClick={() => handleTabClick(id)}
             isActive={id === activeTabId}
-            restaurantId ={id}
+            restaurantId={id}
           />
         ))}
       </div>

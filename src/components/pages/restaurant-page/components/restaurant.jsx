@@ -7,14 +7,17 @@ import { Menu } from "./menu";
 import { Reviews } from "./reviews";
 
 export const Restautant = ({ restaurantId }) => {
-  const { auth:{isAuthorized}} = useContext(UserContext);
-  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
+  const {
+    auth: { isAuthorized },
+  } = useContext(UserContext);
+  const restaurant =
+    useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
 
   return (
     <>
       <h2 style={{ color: "cadetblue" }}>{restaurant.name}</h2>
-      <Menu menu = {restaurant.menu} />
-      <Reviews reviews = {restaurant.reviews} />
+      <Menu menu={restaurant.menu} />
+      <Reviews reviews={restaurant.reviews} />
       {isAuthorized ? <ReviewForm /> : null}
     </>
   );

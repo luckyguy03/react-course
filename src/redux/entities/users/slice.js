@@ -6,7 +6,7 @@ const initialState = {
   entities: normalizedUsers.reduce((acc, dish) => {
     acc[dish.id] = dish;
     return acc;
-  }, {})
+  }, {}),
 };
 
 export const usersSlice = createSlice({
@@ -14,8 +14,7 @@ export const usersSlice = createSlice({
   initialState,
   selectors: {
     selectUserById: (state, id) => state.entities[id],
-  }
+  },
 });
 
-export const { selectUserById } =
-  usersSlice.selectors;
+export const { selectUserById } = usersSlice.selectors;
