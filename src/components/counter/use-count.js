@@ -12,6 +12,7 @@ export const useCount = (min, max, dishId) => {
   const amount = useSelector((state) =>
     selectItemAmountById(state, dishId)
   );
+
   const increment = useCallback(
     () => dispatch(addToCart(dishId)),
     [dispatch, dishId]
@@ -26,7 +27,7 @@ export const useCount = (min, max, dishId) => {
   const decrementEnabled = amount > min;
 
   return {
-    value: amount,
+    amount,
     increment,
     decrement,
     incrementEnabled,

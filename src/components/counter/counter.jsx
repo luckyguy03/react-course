@@ -9,6 +9,7 @@ export const Counter = ({
   decrementEnable,
   incrementEnable,
 }) => {
+
   return (
     <div className={styles.container}>
       <div>

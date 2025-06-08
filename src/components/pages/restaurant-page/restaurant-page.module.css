@@ -1,13 +1,10 @@
 .activeTab{
-    cursor: pointer;
-    height: 40px;
-    color: green;
+    color: rgb(174, 100, 16);
     width: 160px;
 }
 .notActiveTab{
-    cursor: pointer;
-    height: 40px;
     width: 160px;
+    color:green
 }
 
 .restaurantPage {
@@ -34,5 +31,10 @@
 
 .dishCounter{
     width: 30%;
+}
+.innerTabs{
+    display: grid;
+    grid-template-columns: 60px 60px;
+
 }
 

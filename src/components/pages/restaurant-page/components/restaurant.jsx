@@ -3,22 +3,36 @@ import { selectRestaurantById } from "../../../../redux/entities/restaurant/slic
 import { ReviewForm } from "../../../review-form/review-form";
 import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
-import { Menu } from "./menu";
-import { Reviews } from "./reviews";
+import { Outlet, useParams, NavLink } from "react-router";
 
-export const Restautant = ({ restaurantId }) => {
+import styles from "../restaurant-page.module.css";
+
+export const Restaurant = () => {
   const {
     auth: { isAuthorized },
   } = useContext(UserContext);
+  const { restaurantId } = useParams();
   const restaurant =
     useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
 
   return (
     <>
       <h2 style={{ color: "cadetblue" }}>{restaurant.name}</h2>
-      <Menu menu={restaurant.menu} />
-      <Reviews reviews={restaurant.reviews} />
+      <div className={styles.innerTabs}>
+        <div>
+          <NavLink to="menu" className={({ isActive }) => isActive ? styles.activeTab : styles.notActiveTab}>
+            Меню
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to="reviews" className={({ isActive }) => isActive ? styles.activeTab : styles.notActiveTab}>
+            Отзывы
+          </NavLink>
+      </div>
+      </div>
+      <Outlet />
       {isAuthorized ? <ReviewForm /> : null}
+      
     </>
   );
 };

@@ -20,9 +20,7 @@ export const cartSlice = createSlice({
     },
   },
   selectors: {
-    selectItemAmountById: (state, id) => {
-      return state[id] || 0;
-    },
+    selectItemAmountById: (state, id) => state[id] || 0
   },
 });
 
