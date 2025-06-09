@@ -17,7 +17,7 @@ export const Menu = () => {
       <ul>
         {restaurant.menu.map((id) => (
           <li style={{ listStyleType: "none", color: "green" }} key={id}>
-            <Dish dishId={id} isLink={true} />
+            <Dish dishId={id} isLink />
           </li>
         ))}
       </ul>

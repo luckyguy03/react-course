@@ -34,28 +34,3 @@ export const useCount = (min, max, dishId) => {
     decrementEnabled,
   };
 };
-
-/*
-export const useCount = (headphoneId) => {
-  const dispatch = useDispatch();
-
-  const amount = useSelector((state) =>
-    selectItemAmountById(state, headphoneId)
-  );
-  const increment = useCallback(
-    () => dispatch(addToCart(headphoneId)),
-    [dispatch, headphoneId]
-  );
-
-  const decrement = useCallback(
-    () => dispatch(removeFromCart(headphoneId)),
-    [dispatch, headphoneId]
-  );
-
-  return {
-    value: amount,
-    increment,
-    decrement,
-  };
-};
-*/
