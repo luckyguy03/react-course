@@ -1,15 +1,3 @@
-.activeTab{
-    cursor: pointer;
-    height: 40px;
-    color: green;
-    width: 160px;
-}
-.notActiveTab{
-    cursor: pointer;
-    height: 40px;
-    width: 160px;
-}
-
 .restaurantPage {
     display: grid;
     grid-auto-flow: column;
@@ -28,11 +16,20 @@
 
 .dishDescription{
     width: 100%;
-    margin: auto;
     height: 32px;
+    color:rgb(3, 99, 37);
+    line-height: 32px;
+}
+.dishPrice{
+    color:red;
 }
 
 .dishCounter{
     width: 30%;
+}
+.innerTabs{
+    display: grid;
+    grid-template-columns: 60px 60px;
+
 }
 

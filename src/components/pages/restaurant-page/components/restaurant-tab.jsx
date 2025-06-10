@@ -1,18 +1,11 @@
-import { Button } from "../../../button/button";
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../../../redux/entities/restaurant/slice";
 
-import styles from "../restaurant-page.module.css";
+import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper";
 
-export const RestaurantTab = ({ restaurantId, onClick, isActive }) => {
-  const label =
-    useSelector((state) => selectRestaurantById(state, restaurantId)).name ||
-    {};
+export const RestaurantTab = ({ restaurantId }) => {
+  const label =  useSelector((state) => selectRestaurantById(state, restaurantId)).name || {};
   return (
-    <Button
-      className={isActive ? styles.activeTab : styles.notActiveTab}
-      onClick={onClick}
-      title={<b>{label}</b>}
-    />
+    <NavLinkWrapper path={restaurantId} label={label}/>
   );
 };

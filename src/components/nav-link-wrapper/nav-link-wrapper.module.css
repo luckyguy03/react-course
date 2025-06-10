@@ -1,0 +1,8 @@
+.activeTab{
+    color: rgb(174, 100, 16);
+    width: 160px;
+}
+.notActiveTab{
+    width: 160px;
+    color:green
+}
