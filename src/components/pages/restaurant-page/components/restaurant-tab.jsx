@@ -6,6 +6,6 @@ import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper";
 export const RestaurantTab = ({ restaurantId }) => {
   const label =  useSelector((state) => selectRestaurantById(state, restaurantId)).name || {};
   return (
-    <NavLinkWrapper path={`${restaurantId}/menu`} label={label}/>
+    <NavLinkWrapper path={restaurantId} label={label}/>
   );
 };

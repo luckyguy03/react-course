@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { selectDishById } from "../../../../redux/entities/dishes/slice";
 import { NavLink } from "react-router";
+import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper";
 
 import styles from "../../restaurant-page/restaurant-page.module.css";
 
@@ -18,12 +19,10 @@ export const Dish = ({ dishId, isLink }) => {
     <div className={styles.container}>
       {isLink ? (
       <div className={styles.dishDescription}>
-        <NavLink to={"/dish/" + dish.id} >
-          {dish.name} - <span style={{ color: "black" }}>{dish.price}$</span>
-        </NavLink>
+        <NavLinkWrapper path={"/dish/" + dish.id} label={dish.name + " - " + dish.price + '$'}/>
       </div>) : (
       <div className={styles.dishDescription}>
-        {dish.name} - <span style={{ color: "black" }}>{dish.price}$</span> ({" "}{dish.ingredients.join(", ")} )
+        {dish.name} - <span className={styles.dishPrice}>{dish.price}$</span> ({" Ingredients: "}{dish.ingredients.join(", ")} )
       </div>)
       }
       {isAuthorized ? (

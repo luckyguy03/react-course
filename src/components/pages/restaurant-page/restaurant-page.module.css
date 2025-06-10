@@ -16,8 +16,12 @@
 
 .dishDescription{
     width: 100%;
-    margin: auto;
     height: 32px;
+    color:rgb(3, 99, 37);
+    line-height: 32px;
+}
+.dishPrice{
+    color:red;
 }
 
 .dishCounter{
