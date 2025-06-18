@@ -12,7 +12,7 @@ export const dishesSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(getDishes.pending, (state) => {
+      .addCase(getDishes.pending || getDish.pending, (state) => {
         state.requestStatus = REQUEST_STATUS.PENDING;
       })
       .addCase(getDishes.fulfilled, (state, { payload }) => {
@@ -21,7 +21,7 @@ export const dishesSlice = createSlice({
       .addCase(getDish.fulfilled, (state, { payload }) => {
         entityAdapter.addOne(state, payload);
       })
-      .addCase(getDishes.rejected, (state) => {
+      .addCase(getDishes.rejected || getDish.pending, (state) => {
         state.requestStatus = REQUEST_STATUS.REJECTED;
       }),
 });
