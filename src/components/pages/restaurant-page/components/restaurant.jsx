@@ -5,6 +5,9 @@ import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
 import { Outlet, useParams } from "react-router";
 import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper"; 
+import { getRestaurant } from "../../../../redux/entities/restaurant/get-restaurants";
+import { useRequest } from "../../../../redux/hooks/use-request";
+import { REQUEST_STATUS } from "../../../../constants/request-status";
 
 import styles from "../restaurant-page.module.css";
 
@@ -13,8 +16,16 @@ export const Restaurant = () => {
     auth: { isAuthorized },
   } = useContext(UserContext);
   const { restaurantId } = useParams();
-  const restaurant =
-    useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
+  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
+  const requestStatus = useRequest(getRestaurant, restaurantId);
+  
+  if (requestStatus === REQUEST_STATUS.PENDING) {
+    return "Loading...";
+  }
+
+  if (requestStatus === REQUEST_STATUS.REJECTED) {
+    return "error";
+  }
 
   return (
     <>

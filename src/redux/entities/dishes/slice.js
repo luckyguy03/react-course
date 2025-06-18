@@ -1,20 +1,36 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { normalizedDishes } from "../../../constants/normalized-mock";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { getDishes, getDish } from "./get-dish";
+import { REQUEST_STATUS } from "../../../constants/request-status";
 
-const initialState = {
-  ids: normalizedDishes.map(({ id }) => id),
-  entities: normalizedDishes.reduce((acc, dish) => {
-    acc[dish.id] = dish;
-    return acc;
-  }, {}),
-};
+const entityAdapter = createEntityAdapter();
 
 export const dishesSlice = createSlice({
   name: "dishesSlice",
-  initialState,
+  initialState: entityAdapter.getInitialState({ requestStatus: REQUEST_STATUS.IDLE }),
   selectors: {
-    selectDishById: (state, id) => state.entities[id],
+    selectRequestStatus: (state) => state.requestStatus,
   },
+  extraReducers: (builder) =>
+    builder
+      .addCase(getDishes.pending, (state) => {
+        state.requestStatus = REQUEST_STATUS.PENDING;
+      })
+      .addCase(getDishes.fulfilled, (state, { payload }) => {
+        entityAdapter.addMany(state, payload);
+      })
+      .addCase(getDish.fulfilled, (state, { payload }) => {
+        entityAdapter.addOne(state, payload);
+      })
+      .addCase(getDishes.rejected, (state) => {
+        state.requestStatus = REQUEST_STATUS.REJECTED;
+      }),
 });
 
-export const { selectDishById } = dishesSlice.selectors;
+const selectDishesSlice = (state) => state[dishesSlice.name];
+
+export const {
+  selectIds: selectDishIds,
+  selectById: selectDishById,
+} = entityAdapter.getSelectors(selectDishesSlice);
+
+export const { selectRequestStatus } = dishesSlice.selectors
