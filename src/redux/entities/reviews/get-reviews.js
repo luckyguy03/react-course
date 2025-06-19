@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-//import { selectRequestStatus } from "./slice";
 
 export const getReviews = createAsyncThunk("reviews/getReviews",
   async (id, { rejectWithValue }) => {

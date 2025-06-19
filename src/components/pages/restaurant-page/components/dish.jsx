@@ -3,7 +3,6 @@ import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { selectDishById } from "../../../../redux/entities/dishes/slice";
-//import { NavLink } from "react-router";
 import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper";
 
 import styles from "../../restaurant-page/restaurant-page.module.css";

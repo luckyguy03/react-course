@@ -31,15 +31,3 @@ export const {
 } = entityAdapter.getSelectors(selectUsersSlice);
 
 export const { selectRequestStatus } = usersSlice.selectors
-
-/*
-export const usersSlice = createSlice({
-  name: "usersSlice",
-  initialState,
-  selectors: {
-    selectUserById: (state, id) => state.entities[id],
-  },
-});
-
-export const { selectUserById } = usersSlice.selectors;
-*/

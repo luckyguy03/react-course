@@ -1,10 +1,11 @@
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
-import { selectReviewIds } from "../../../../redux/entities/reviews/slice";
 import { useRequest } from "../../../../redux/hooks/use-request";
 import { getReviews } from "../../../../redux/entities/reviews/get-reviews";
 import { getUsers } from "../../../../redux/entities/users/get-users";
 import { REQUEST_STATUS } from "../../../../constants/request-status";
+import { selectRestaurantById } from "../../../../redux/entities/restaurant/slice";
+
 
 import { Review } from "./review";
 
@@ -12,7 +13,7 @@ export const Reviews = () => {
 
   const { restaurantId } = useParams();
 
-  const reviewIds = useSelector(selectReviewIds);
+  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
 
   const reviewsRequestStatus = useRequest(getReviews, restaurantId);
   const usersRequestStatus = useRequest(getUsers);
@@ -28,13 +29,13 @@ export const Reviews = () => {
 
   return (
     <>
-      {reviewIds.length === 0 ? (
+      {restaurant.reviews.length === 0 ? (
         <h4 style={{ color: "burlywood" }}>Отзывов пока нет</h4>
       ) : (
         <>
           <h3 style={{ color: "ButtonText" }}>Отзывы:</h3>
           <ul>
-            {reviewIds.map((id) => (
+            {restaurant.reviews.map((id) => (
               <li style={{ listStyleType: "none", color: "green" }} key={id}>
                 <Review reviewId={id} />
               </li>

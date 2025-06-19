@@ -1,5 +1,6 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { getDishes, getDish } from "./get-dish";
+import { getDish } from "./get-dish";
+import { getDishes } from "./get-dishes";
 import { REQUEST_STATUS } from "../../../constants/request-status";
 
 const entityAdapter = createEntityAdapter();
