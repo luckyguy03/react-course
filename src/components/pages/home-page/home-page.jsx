@@ -1,8 +1,10 @@
+import { Link } from 'react-router';
+
 export const HomePage = () => {
   return (
     <div>
       <h1>ДОМАШНЯЯ СТРАНИЦА</h1>
-      <a href="/restaurants">Наши рестораны</a>
+      <Link to="/restaurants">Наши рестораны</Link>
     </div>
   )
 }
