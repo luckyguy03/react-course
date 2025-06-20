@@ -12,7 +12,7 @@ export const DishPage = () => {
   const dish = useSelector((state) => selectDishById(state, dishId) || {});
   const requestStatus = useRequest(getDish, dishId);
 
-  if (requestStatus === REQUEST_STATUS.PENDING || Object.keys(dish).length === 0) {
+  if (requestStatus === REQUEST_STATUS.PENDING || !dish) {
     return "Loading...";
   }
 

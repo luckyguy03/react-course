@@ -1,4 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { selectDishById, selectRequestStatus } from "./slice";
+import { REQUEST_STATUS } from "../../../constants/request-status";
 
 export const getDish = createAsyncThunk("dish/getDish",
   async (dishId, { rejectWithValue }) => {
@@ -16,7 +18,8 @@ export const getDish = createAsyncThunk("dish/getDish",
       const state = getState();
      
       return (
-        !state.dishesSlice.ids.find(element => element === dishId)
+        !selectDishById(state, dishId) ||
+        selectRequestStatus(state) === REQUEST_STATUS.IDLE
       );
     },
   }
