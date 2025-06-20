@@ -8,7 +8,7 @@ import { REQUEST_STATUS } from "../../../constants/request-status";
 
 import styles from "./restaurant-page.module.css";
 
-export const RestaurantPage = () => {
+export const RestaurantsPage = () => {
 
   const restaurantIds = useSelector(selectRestaurantIds);
   const requestStatus = useRequest(getRestaurants);
