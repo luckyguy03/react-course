@@ -3,7 +3,6 @@ import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { selectDishById } from "../../../../redux/entities/dishes/slice";
-import { NavLink } from "react-router";
 import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper";
 
 import styles from "../../restaurant-page/restaurant-page.module.css";
@@ -13,6 +12,7 @@ export const Dish = ({ dishId, isLink }) => {
   const {
     auth: { isAuthorized },
   } = useContext(UserContext);
+
   const dish = useSelector((state) => selectDishById(state, dishId) || {});
 
   return (
