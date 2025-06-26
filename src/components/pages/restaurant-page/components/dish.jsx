@@ -1,9 +1,8 @@
 import { DishCounter } from "../../../counter/dish-counter";
 import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
-import { useSelector } from "react-redux";
-import { selectDishById } from "../../../../redux/entities/dishes/slice";
 import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper";
+import { useGetDishesQuery } from "../../../../redux/api/index";
 
 import styles from "../../restaurant-page/restaurant-page.module.css";
 
@@ -13,7 +12,12 @@ export const Dish = ({ dishId, isLink }) => {
     auth: { isAuthorized },
   } = useContext(UserContext);
 
-  const dish = useSelector((state) => selectDishById(state, dishId) || {});
+  const { data: dish } = useGetDishesQuery(undefined, {
+    selectFromResult: (result) => ({
+      ...result,
+      data: result.data.find(({ id }) => id === dishId),
+    }),
+  });
 
   return (
     <div className={styles.container}>

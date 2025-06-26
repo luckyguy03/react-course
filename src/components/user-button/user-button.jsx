@@ -10,7 +10,7 @@ export const UserButton = () => {
   } = useContext(UserContext);
 
   const handleClick = () => {
-    toggleAuth((current) => (current === "" ? "Andrey" : ""));
+    toggleAuth();
   };
 
   return (

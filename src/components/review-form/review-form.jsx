@@ -8,10 +8,10 @@ import { Button } from "../button/button";
 
 import styles from "./review-form.module.css";
 
-export const ReviewForm = () => {
+export const ReviewForm = ({ onSubmitForm, isSubmitButtonDisabled, userName }) => {
   const { form, onNameChange, onTextChange, onRatingChange, clear } = useForm();
 
-  const { name, text, ratingCount } = form;
+  const { text, ratingCount } = form;
 
   return (
     <div className={styles.reviewForm}>
@@ -20,11 +20,12 @@ export const ReviewForm = () => {
         <div>
           <span>Ваше имя</span>
           <input
-            value={name}
+            value={userName}
             onChange={(event) => {
               onNameChange(event.target.value);
             }}
             type="text"
+            disabled
           />
         </div>
         <div>
@@ -58,6 +59,18 @@ export const ReviewForm = () => {
           className={styles.resetBtn}
           onClick={clear}
           title={"Очистить"}
+        />
+        <Button
+          title="Отправить отзыв"
+          onClick={() => {
+            if( text === ""){
+              alert("Необходимо ввести сообщение");
+            }else{
+              onSubmitForm(form);
+              clear();
+            }
+          }}
+          disabled={isSubmitButtonDisabled}
         />
       </form>
     </div>

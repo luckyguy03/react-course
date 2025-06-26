@@ -1,31 +1,36 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../../../redux/entities/restaurant/slice";
 import { ReviewForm } from "../../../review-form/review-form";
 import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
 import { Outlet, useParams } from "react-router";
 import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper"; 
-import { getRestaurant } from "../../../../redux/entities/restaurant/get-restaurants";
-import { useRequest } from "../../../../redux/hooks/use-request";
-import { REQUEST_STATUS } from "../../../../constants/request-status";
+import { useGetRestaurantsQuery, useAddReviewMutation } from "../../../../redux/api/index";
 
 import styles from "../restaurant-page.module.css";
 
 export const Restaurant = () => {
   const {
-    auth: { isAuthorized },
+    auth: { isAuthorized, userId, name },
   } = useContext(UserContext);
   const { restaurantId } = useParams();
-  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
-  const requestStatus = useRequest(getRestaurant, restaurantId);
   
-  if (requestStatus === REQUEST_STATUS.PENDING) {
-    return "Loading...";
-  }
+  const { data: restaurant } = useGetRestaurantsQuery(undefined, {
+    selectFromResult: (result) => ({
+      ...result,
+      data: result.data.find(({ id }) => id === restaurantId),
+    }),
+  });
 
-  if (requestStatus === REQUEST_STATUS.REJECTED) {
-    return "error";
-  }
+  const [addReviewMutation, { isLoading }] = useAddReviewMutation();
+
+  const handleAddReview = (review) => {
+
+    console.log("review111:", review);
+
+    addReviewMutation({
+      restaurantId: restaurant.id,
+      review: { text: review.text, rating: review.ratingCount, userId: userId },
+    });
+  };
 
   return (
     <>
@@ -35,7 +40,12 @@ export const Restaurant = () => {
         <NavLinkWrapper path="reviews" label={"Отзывы"}/>
       </div>
       <Outlet />
-      {isAuthorized ? <ReviewForm /> : null}
+      {isAuthorized ? 
+        <ReviewForm
+          onSubmitForm={handleAddReview}
+          isSubmitButtonDisabled={isLoading}
+          userName={name}
+       /> : null}
     </>
   );
 };

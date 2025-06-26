@@ -1,8 +1,14 @@
-import { selectDishById } from "../../redux/entities/dishes/slice";
-import { useSelector } from "react-redux";
+import { useGetDishesQuery } from "../../redux/api/index";
 
-export const CartItem = ({id, amount}) => {
-  const dish = useSelector(state => selectDishById(state, id));
+export const CartItem = ({id: dishId, amount}) => {
+
+  const { data: dish } = useGetDishesQuery(undefined, {
+    selectFromResult: (result) => ({
+      ...result,
+      data: result.data.find(({ id }) => id === dishId),
+    }),
+  });
+
   return (
     <span>{dish.name} - {amount}</span>
   )
