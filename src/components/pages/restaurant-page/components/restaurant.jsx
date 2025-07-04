@@ -3,7 +3,7 @@ import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
 import { Outlet, useParams } from "react-router";
 import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper"; 
-import { useGetRestaurantsQuery, useAddReviewMutation } from "../../../../redux/api/index";
+import { useGetRestaurantsQuery, useAddReviewMutation, useUpdateReviewMutation } from "../../../../redux/api/index";
 
 import styles from "../restaurant-page.module.css";
 
@@ -12,7 +12,6 @@ export const Restaurant = () => {
     auth: { isAuthorized, userId, name },
   } = useContext(UserContext);
   const { restaurantId } = useParams();
-  
   const { data: restaurant } = useGetRestaurantsQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
@@ -21,15 +20,21 @@ export const Restaurant = () => {
   });
 
   const [addReviewMutation, { isLoading }] = useAddReviewMutation();
+  const [updateReviewMutation, { isLoading: isUpdateLoading }] = useUpdateReviewMutation();
 
-  const handleAddReview = (review) => {
 
-    console.log("review111:", review);
-
-    addReviewMutation({
+  const handleReview = (review) => {
+    if (review.reviewId != null) {
+      updateReviewMutation({
+        reviewId: review.reviewId,
+        review: { rating: review.ratingCount, text: review.text },
+      });
+    } else {
+      addReviewMutation({
       restaurantId: restaurant.id,
       review: { text: review.text, rating: review.ratingCount, userId: userId },
     });
+    }
   };
 
   return (
@@ -42,8 +47,8 @@ export const Restaurant = () => {
       <Outlet />
       {isAuthorized ? 
         <ReviewForm
-          onSubmitForm={handleAddReview}
-          isSubmitButtonDisabled={isLoading}
+          onSubmitForm={handleReview}
+          isSubmitButtonDisabled={isLoading || isUpdateLoading}
           userName={name}
        /> : null}
     </>
