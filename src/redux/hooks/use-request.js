@@ -8,7 +8,7 @@ export const useRequest = (thunk, params) => {
   const [request, setRequest] = useState(null);
 
   const requestStatus = useSelector((state) =>
-    selectRequestStatus(state, request?.requestId)
+    selectRequestStatus(state, request?.requestId),
   );
 
   useEffect(() => {

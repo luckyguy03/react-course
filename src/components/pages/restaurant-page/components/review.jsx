@@ -6,29 +6,34 @@ import { UserContext } from "../../../user-context-provider/index";
 
 import styles from "../../restaurant-page/restaurant-page.module.css";
 
-export const Review = ({review}) => {
+export const Review = ({ review }) => {
   const {
-      auth: { isAuthorized },
-    } = useContext(UserContext);
+    auth: { isAuthorized, userId },
+  } = useContext(UserContext);
 
   const { setReview } = useContext(ReviewContext);
-  // Установить контекст
-  const changeReview = (reviewObject) => {
-    setReview(reviewObject);
-  }
-  
+
   return (
     <div className={styles.review}>
-      <ReviewUser userId={review.userId} /> - {" "}
-      <span style={{ color: "black" }}>
+      <ReviewUser userId={review.userId} /> -{" "}
+      <span className={styles.reviewText}>
         {review.text} - Rating({review.rating})
       </span>
-      {isAuthorized && (review.userId == "20bed9b5-9c7b-4771-8221-75b74ed1904a") && (
-      <Button
-          onClick={() => changeReview({ review: { reviewText:review.text, reviewRating: review.rating, reviewId: review.id } })}
+      {isAuthorized && review.userId == userId && (
+        <Button
+          onClick={() =>
+            setReview({
+              review: {
+                reviewText: review.text,
+                reviewRating: review.rating,
+                reviewId: review.id,
+              },
+            })
+          }
           title={"Изменить"}
           size="400"
-      ></Button>)}
+        />
+      )}
     </div>
   );
 };

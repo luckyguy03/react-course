@@ -1,21 +1,16 @@
 import { useParams } from "react-router";
-import { useGetRestaurantsQuery, useGetDishesQuery } from "../../../../redux/api/index";
-
+import { useGetDishesByRestaurantIdQuery } from "../../../../redux/api/index";
 import { Dish } from "./dish";
+
+import styles from "../restaurant-page.module.css";
 
 export const Menu = () => {
   const { restaurantId } = useParams();
-   
-  const { data: restaurant } = useGetRestaurantsQuery(undefined, {
-    selectFromResult: (result) => ({
-      ...result,
-      data: result.data.find(({ id }) => id === restaurantId),
-    }),
-  });
 
-  const { data, isLoading, isError } = useGetDishesQuery();
+  const { data, isLoading, isError } =
+    useGetDishesByRestaurantIdQuery(restaurantId);
 
-  if (isLoading || !data.length) {
+  if (isLoading) {
     return "Loading...";
   }
 
@@ -25,11 +20,11 @@ export const Menu = () => {
 
   return (
     <>
-      <h3 style={{ color: "ButtonText" }}>Меню:</h3>
+      <h3 className={styles.menuHeader}>Меню:</h3>
       <ul>
-        {restaurant.menu.map((id) => (
-          <li style={{ listStyleType: "none", color: "green" }} key={id}>
-            <Dish dishId={id} isLink />
+        {data.map((dish) => (
+          <li className={styles.menuItem} key={dish.id}>
+            <Dish dish={dish} isLink />
           </li>
         ))}
       </ul>

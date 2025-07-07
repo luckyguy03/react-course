@@ -1,15 +1,21 @@
-import { useGetDishesQuery } from "../../redux/api/index";
+import { useGetDishByIdQuery } from "../../redux/api/index";
 
-export const CartItem = ({id: dishId, amount}) => {
+export const CartItem = ({ id: dishId, amount }) => {
+  const { data: dish, isLoading, isError } = useGetDishByIdQuery(dishId);
 
-  const { data: dish } = useGetDishesQuery(undefined, {
-    selectFromResult: (result) => ({
-      ...result,
-      data: result.data.find(({ id }) => id === dishId),
-    }),
-  });
+  if (isLoading) {
+    return "Loading...";
+  }
+
+  if (isError) {
+    return "error";
+  }
+
+  //const dish = data.find(({ id }) => id === dishId);
 
   return (
-    <span>{dish.name} - {amount}</span>
-  )
-}
+    <span>
+      {dish.name} - {amount}
+    </span>
+  );
+};

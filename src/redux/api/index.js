@@ -11,6 +11,12 @@ export const api = createApi({
     getDishes: builder.query({
       query: () => "/dishes",
     }),
+    getDishById: builder.query({
+      query: (dishId) => "/dish/" + dishId,
+    }),
+    getDishesByRestaurantId: builder.query({
+      query: (restaurantId) => `/dishes?restaurantId=${restaurantId}`,
+    }),
     getUsers: builder.query({
       query: () => "/users",
     }),
@@ -40,6 +46,8 @@ export const api = createApi({
 export const {
   useGetRestaurantsQuery,
   useGetDishesQuery,
+  useGetDishesByRestaurantIdQuery,
+  useGetDishByIdQuery,
   useGetUsersQuery,
   useGetReviewsByRestaurantIdQuery,
   useAddReviewMutation,

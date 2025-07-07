@@ -36,16 +36,15 @@ const reducer = (state, { type, payload }) => {
         ...state,
         text: payload.text,
         ratingCount: payload.rating,
-      }
+      };
     default:
       return state;
   }
 };
 
 export const useForm = (text, rating) => {
-
   useEffect(() => {
-    dispatch({ type: SET_REVIEW_ACTION, payload: {text, rating} });
+    dispatch({ type: SET_REVIEW_ACTION, payload: { text, rating } });
   }, [text, rating]);
 
   const [form, dispatch] = useReducer(reducer, {

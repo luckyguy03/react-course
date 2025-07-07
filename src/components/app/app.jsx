@@ -6,7 +6,7 @@ import { UserContextProvider } from "../user-context-provider/user-context-provi
 import { ReviewContextProvider } from "../review-context-provider/review-context-provider";
 import { Provider } from "react-redux";
 import { store } from "../../redux/store";
-import { BrowserRouter, Navigate, Route, Routes} from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { HomePage } from "../pages/home-page/home-page";
 import { Menu } from "../pages/restaurant-page/components/menu";
 import { Reviews } from "../pages/restaurant-page/components/reviews";
@@ -24,17 +24,16 @@ export const App = () => {
               <Routes>
                 <Route element={<Layout />}>
                   <Route path="/" element={<HomePage />} />
-    
+
                   <Route path="/restaurants" element={<RestaurantsPage />}>
                     <Route path=":restaurantId" element={<Restaurant />}>
-                      <Route index element={ <Navigate to="menu"/>} />
+                      <Route index element={<Navigate to="menu" />} />
                       <Route path="menu" element={<Menu />} />
                       <Route path="reviews" element={<Reviews />} />
                     </Route>
                   </Route>
-    
+
                   <Route path="/dish/:dishId" element={<DishPage />} />
-    
                 </Route>
               </Routes>
             </BrowserRouter>

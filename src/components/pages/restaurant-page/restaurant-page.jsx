@@ -5,7 +5,6 @@ import { useGetRestaurantsQuery } from "../../../redux/api/index";
 import styles from "./restaurant-page.module.css";
 
 export const RestaurantsPage = () => {
-
   const { data, isLoading, isError } = useGetRestaurantsQuery();
 
   if (isLoading || !data.length) {
@@ -20,10 +19,7 @@ export const RestaurantsPage = () => {
     <div className={styles.restaurantPageContainer}>
       <div className={styles.restaurantPage}>
         {data.map((restaurant) => (
-          <RestaurantTab
-            key={restaurant.id}
-            restaurant={restaurant}
-          />
+          <RestaurantTab key={restaurant.id} restaurant={restaurant} />
         ))}
       </div>
       <Outlet />

@@ -9,5 +9,4 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares().concat(api.middleware),
-  
 });

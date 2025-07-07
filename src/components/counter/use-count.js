@@ -9,18 +9,16 @@ import {
 export const useCount = (min, max, dishId) => {
   const dispatch = useDispatch();
 
-  const amount = useSelector((state) =>
-    selectItemAmountById(state, dishId)
-  );
+  const amount = useSelector((state) => selectItemAmountById(state, dishId));
 
   const increment = useCallback(
     () => dispatch(addToCart(dishId)),
-    [dispatch, dishId]
+    [dispatch, dishId],
   );
 
   const decrement = useCallback(
     () => dispatch(removeFromCart(dishId)),
-    [dispatch, dishId]
+    [dispatch, dishId],
   );
 
   const incrementEnabled = amount < max;

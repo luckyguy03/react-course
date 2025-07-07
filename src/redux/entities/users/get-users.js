@@ -2,7 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { selectRequestStatus, selectUserIds } from "./slice";
 import { REQUEST_STATUS } from "../../../constants/request-status";
 
-export const getUsers = createAsyncThunk("users/getUsers",
+export const getUsers = createAsyncThunk(
+  "users/getUsers",
   async (_, { rejectWithValue }) => {
     const response = await fetch("http://localhost:3001/api/users");
     const result = await response.json();
@@ -20,5 +21,5 @@ export const getUsers = createAsyncThunk("users/getUsers",
         selectRequestStatus(state) === REQUEST_STATUS.IDLE
       );
     },
-  }
+  },
 );

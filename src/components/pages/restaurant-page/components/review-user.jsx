@@ -1,6 +1,5 @@
 import { useGetUsersQuery } from "../../../../redux/api/index";
 
-
 export const ReviewUser = ({ userId }) => {
   const { data: user } = useGetUsersQuery(undefined, {
     selectFromResult: (result) => ({
@@ -8,6 +7,6 @@ export const ReviewUser = ({ userId }) => {
       data: result.data.find(({ id }) => id === userId),
     }),
   });
-  
+
   return <span>{user.name}</span>;
 };
