@@ -6,7 +6,9 @@ const entityAdapter = createEntityAdapter();
 
 export const usersSlice = createSlice({
   name: "usersSlice",
-  initialState: entityAdapter.getInitialState({ requestStatus: REQUEST_STATUS.IDLE }),
+  initialState: entityAdapter.getInitialState({
+    requestStatus: REQUEST_STATUS.IDLE,
+  }),
   selectors: {
     selectRequestStatus: (state) => state.requestStatus,
   },
@@ -25,9 +27,7 @@ export const usersSlice = createSlice({
 
 const selectUsersSlice = (state) => state[usersSlice.name];
 
-export const {
-  selectIds: selectUserIds,
-  selectById: selectUserById,
-} = entityAdapter.getSelectors(selectUsersSlice);
+export const { selectIds: selectUserIds, selectById: selectUserById } =
+  entityAdapter.getSelectors(selectUsersSlice);
 
-export const { selectRequestStatus } = usersSlice.selectors
+export const { selectRequestStatus } = usersSlice.selectors;

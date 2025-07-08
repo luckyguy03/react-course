@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 const INITIAL_FORM = {
   name: "",
@@ -10,6 +10,7 @@ const SET_NAME_ACTION = "setName";
 const SET_TEXT_ACTION = "setText";
 const SET_RATING_ACTION = "setRating";
 const CLEAR_ACTION = "clear";
+const SET_REVIEW_ACTION = "setReview";
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
@@ -30,13 +31,27 @@ const reducer = (state, { type, payload }) => {
       };
     case CLEAR_ACTION:
       return INITIAL_FORM;
+    case SET_REVIEW_ACTION:
+      return {
+        ...state,
+        text: payload.text,
+        ratingCount: payload.rating,
+      };
     default:
       return state;
   }
 };
 
-export const useForm = () => {
-  const [form, dispatch] = useReducer(reducer, INITIAL_FORM);
+export const useForm = (text, rating) => {
+  useEffect(() => {
+    dispatch({ type: SET_REVIEW_ACTION, payload: { text, rating } });
+  }, [text, rating]);
+
+  const [form, dispatch] = useReducer(reducer, {
+    name: "",
+    text: text,
+    ratingCount: rating,
+  });
 
   const onNameChange = (name) => {
     dispatch({ type: SET_NAME_ACTION, payload: name });

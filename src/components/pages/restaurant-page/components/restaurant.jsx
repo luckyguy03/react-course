@@ -1,41 +1,65 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../../../redux/entities/restaurant/slice";
 import { ReviewForm } from "../../../review-form/review-form";
 import { UserContext } from "../../../user-context-provider";
 import { useContext } from "react";
 import { Outlet, useParams } from "react-router";
-import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper"; 
-import { getRestaurant } from "../../../../redux/entities/restaurant/get-restaurants";
-import { useRequest } from "../../../../redux/hooks/use-request";
-import { REQUEST_STATUS } from "../../../../constants/request-status";
+import { NavLinkWrapper } from "../../../nav-link-wrapper/nav-link-wrapper";
+import {
+  useGetRestaurantsQuery,
+  useAddReviewMutation,
+  useUpdateReviewMutation,
+} from "../../../../redux/api/index";
 
 import styles from "../restaurant-page.module.css";
 
 export const Restaurant = () => {
   const {
-    auth: { isAuthorized },
+    auth: { isAuthorized, userId, name },
   } = useContext(UserContext);
   const { restaurantId } = useParams();
-  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
-  const requestStatus = useRequest(getRestaurant, restaurantId);
-  
-  if (requestStatus === REQUEST_STATUS.PENDING) {
-    return "Loading...";
-  }
+  const { data: restaurant } = useGetRestaurantsQuery(undefined, {
+    selectFromResult: (result) => ({
+      ...result,
+      data: result.data.find(({ id }) => id === restaurantId),
+    }),
+  });
 
-  if (requestStatus === REQUEST_STATUS.REJECTED) {
-    return "error";
-  }
+  const [addReviewMutation, { isLoading }] = useAddReviewMutation();
+  const [updateReviewMutation, { isLoading: isUpdateLoading }] =
+    useUpdateReviewMutation();
+
+  const handleReview = (review) => {
+    if (review.reviewId != null) {
+      updateReviewMutation({
+        reviewId: review.reviewId,
+        review: { rating: review.ratingCount, text: review.text },
+      });
+    } else {
+      addReviewMutation({
+        restaurantId: restaurant.id,
+        review: {
+          text: review.text,
+          rating: review.ratingCount,
+          userId: userId,
+        },
+      });
+    }
+  };
 
   return (
     <>
-      <h2 style={{ color: "cadetblue" }}>{restaurant.name}</h2>
+      <h2 className={styles.restaurantHeader}>{restaurant.name}</h2>
       <div className={styles.innerTabs}>
-        <NavLinkWrapper path="menu" label={"Меню"}/>
-        <NavLinkWrapper path="reviews" label={"Отзывы"}/>
+        <NavLinkWrapper path="menu" label={"Меню"} />
+        <NavLinkWrapper path="reviews" label={"Отзывы"} />
       </div>
       <Outlet />
-      {isAuthorized ? <ReviewForm /> : null}
+      {isAuthorized ? (
+        <ReviewForm
+          onSubmitForm={handleReview}
+          isSubmitButtonDisabled={isLoading || isUpdateLoading}
+          userName={name}
+        />
+      ) : null}
     </>
   );
 };

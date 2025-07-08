@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
     },
   },
   selectors: {
-    selectItemAmountById: (state, id) => state[id] || 0
+    selectItemAmountById: (state, id) => state[id] || 0,
   },
 });
 
@@ -34,7 +34,7 @@ export const selectCartItems = createSelector(
 
       return acc;
     }, []);
-  }
+  },
 );
 
 export const { addToCart, removeFromCart } = cartSlice.actions;

@@ -1,33 +1,30 @@
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
-import { useRequest } from "../../../../redux/hooks/use-request";
-import { getDishes } from "../../../../redux/entities/dishes/get-dishes";
-import { REQUEST_STATUS } from "../../../../constants/request-status";
-import { selectRestaurantById } from "../../../../redux/entities/restaurant/slice";
-
+import { useGetDishesByRestaurantIdQuery } from "../../../../redux/api/index";
 import { Dish } from "./dish";
+
+import styles from "../restaurant-page.module.css";
 
 export const Menu = () => {
   const { restaurantId } = useParams();
-  
-  const requestStatus = useRequest(getDishes, restaurantId);
-  const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId)) || {};
 
-  if (requestStatus === REQUEST_STATUS.PENDING) {
+  const { data, isLoading, isError } =
+    useGetDishesByRestaurantIdQuery(restaurantId);
+
+  if (isLoading) {
     return "Loading...";
   }
 
-  if (requestStatus === REQUEST_STATUS.REJECTED) {
+  if (isError) {
     return "error";
   }
 
   return (
     <>
-      <h3 style={{ color: "ButtonText" }}>Меню:</h3>
+      <h3 className={styles.menuHeader}>Меню:</h3>
       <ul>
-        {restaurant.menu.map((id) => (
-          <li style={{ listStyleType: "none", color: "green" }} key={id}>
-            <Dish dishId={id} isLink />
+        {data.map((dish) => (
+          <li className={styles.menuItem} key={dish.id}>
+            <Dish dish={dish} isLink />
           </li>
         ))}
       </ul>
