@@ -19,7 +19,7 @@ export const Review = ({ review }) => {
       <span className={styles.reviewText}>
         {review.text} - Rating({review.rating})
       </span>
-      {isAuthorized && review.userId == userId && (
+      {isAuthorized && review.userId === userId && (
         <Button
           onClick={() =>
             setReview({

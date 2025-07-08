@@ -11,8 +11,6 @@ export const CartItem = ({ id: dishId, amount }) => {
     return "error";
   }
 
-  //const dish = data.find(({ id }) => id === dishId);
-
   return (
     <span>
       {dish.name} - {amount}
